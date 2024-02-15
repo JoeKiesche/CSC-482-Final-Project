@@ -29,8 +29,8 @@ nav{
 
 .Logo{
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 20px;
+    top: 20px; 
     width: 10px;
     height: 10px;
 }
@@ -63,9 +63,24 @@ nav{
 
 
 .userLogin a{
+    position: absolute;
+    right: 20px;
+    top: 20px; 
     text-decoration: none;
     color: #fff;
     padding: 10px 20px;
     font-size: 20px;
     background: grey;
 }
+
+.Logout {
+    position: absolute;
+    right: 20px;
+    top: 20px; 
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    background: grey;
+}
+
