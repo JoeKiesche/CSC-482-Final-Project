@@ -2,7 +2,7 @@
 
 <?php
 
-require_once 'DATA BASE GOES HERE';
+require_once '../dbh.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
@@ -37,17 +37,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errorsArray ["wrong_password"] = "Incorrect login info.";
     }
 
-    require_once 'session_config.inc.php';
+    require_once '../session_config.inc.php';
     if($errorsArray) {
         $_SESSION["errors_in_login"] = $errorsArray;
 
-        header("Location: ../login/loginhtml.php");
+        //might need to change
+        header("Location: ../Login/loginhtml.php");
         die();
     }
 
 
 
-    //admin account to remove certain feattures
+    //admin account to remove certain feattures MIGHT CHANGE LATER**
     if ($result && $result[0]['username'] === 'admin'){
         setcookie('username_cookie', $profileUser, time() + (86400 * 30), '/');
         header("Location: ../admin/adminhtml.php");
@@ -73,11 +74,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           
 
 
-    
-    header("Location: ../forum&comments/indexhtml.php?login=success");
+    //might need to change
+    header("Location: ../MainPage/Mainhtml.php?login=success");
     
 }else {
-    header("Location: ../forum&comments/indexhtml.php");
+    header("Location: ../indexhtml.php");
     die();
 }
 ?>

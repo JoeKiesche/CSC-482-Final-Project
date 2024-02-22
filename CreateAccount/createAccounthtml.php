@@ -1,17 +1,9 @@
-
-
+<?php
+    require_once 'createaccount_viewerrors.inc.php';
+    require_once '../session_config.inc.php';
+?>
 
 <!DOCTYPE html>
- 
-
-<!-- 
-
-    going to need to change this to a .phph file 
-    - its .html right now to view what is looks like 
--->
-
-
-
 
 <html lang="en">
 <head>
@@ -24,7 +16,7 @@
 <body>
     <header>
         <h1>PartyPal Create Account</h1>
-        <a href="../Login/login.html">
+        <a href="../Login/loginhtml.php">
             <button class="home">Sign in</button>
         </a>
     <div id="logo"> 
@@ -38,25 +30,25 @@
                 <input type="text" name="username" placeholder="Username">
                 <input type="password" name="password" placeholder="Password">
                 <input type="email" name="email" placeholder="Email">
-                
+                <select name="region"> 
+                    <option value="NA"> NA </option>
+                    <option value="EU"> EU </option>
+                    <option value="Asia and Oceania"> Asia and Oceania </option>
+                    <option value="Russia"> Russia </option>
+                    <option value="China"> China </option>
+                    </select>
 
-                <a href="info.html">
-                    <button type="submit" class="signup"> Signup </button>
-                </a>
+                
+                <button type="submit" class="signup"> Signup </button>
+                
                 <!-- 
                     
                 -->
             </form>
             
-            
-             
-            <!--      
-                
-                php area to check for errors
-                <?php
+            <?php
             createaccount_errors_check();
             ?>
-                    -->
 
         </section>
     </main>
