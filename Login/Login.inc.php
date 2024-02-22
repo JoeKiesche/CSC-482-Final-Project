@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     //might need to change
-    header("Location: ../indexhtml.php?login=success");
+    header("Location: ../MainPage/Mainhtml.php?login=success");
     
 }else {
     header("Location: ../indexhtml.php");
