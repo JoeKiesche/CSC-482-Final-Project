@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #00182f;
+    text-align: center;
+
+}
+
+
+
+header {
+    background-color: #00182f;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+header.logo{ 
+	position:fixed; 
+	top:0; 
+	left:0; 
+    width: 2px;
+    margin-left: auto;
+    max-width: 50%;
+} 
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #00182f;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+#createaccount-form {
+    padding: 40px; 
+    border-radius: 8px;
+    max-width: 500px; 
+    margin: 0 auto; 
+}
+
+h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+input {
+    width: 60%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    
+    
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.home{
+    margin-top: 5px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+button.signup {
+    background-color: #28a745;
+    color: #fff;
+    width: 48%;
+    text-align: center;
+    border: none;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+#form-errors {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+
+img{
+    width: 300px;
+}
+
+/* Styles for section with id Rainbow and other sections */
+
+section {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px; /* Set a fixed width */
+    margin: 0 auto; /* Center the section */
+    text-align: center; /* Center text */
+}
+
+input,
+select,
+button {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%; /* Make elements full width */
+}
+
+select {
+    padding: 10px; /* Increase padding for dropdowns */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button.signup {
+    display: block; /* Ensure button takes full width */
+    margin: 0 auto; /* Center the button horizontally */
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    width: fit-content; /* Adjust width to fit content */
+    border: none;
+    margin-top: 30px;
+}
+
