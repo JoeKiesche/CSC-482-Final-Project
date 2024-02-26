@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $insertStmt->execute();
 
-        header("Location: ../indexhtml.php");
+        header("Location: ../playerinfo/playerInfohtml.php");
 
         $conn->close();
         $insertStmt->close();
