@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2024 at 11:52 PM
+-- Generation Time: Feb 15, 2024 at 12:48 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -218,15 +218,6 @@ CREATE TABLE `userprofile` (
   `region` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `userprofile`
---
-
-INSERT INTO `userprofile` (`user_id`, `username`, `password`, `email`, `full_name`, `created_at`, `is_admin`, `region`) VALUES
-(1, 'test', '$2y$10$RF/tty7T6t8oWRCVYCi4tuICMR.fmsm6S.iuWildf1jaxe1Gi9Dfu', 'test@email.com', NULL, '2024-02-15 00:17:28', 0, 'NA'),
-(2, 'test1', '$2y$10$Qr9eFEqFZMKPE1uhFKL6L./vXkqvzzco1BtvvkZrQh0UXqvSx7EOe', 'test1@gmail.com', NULL, '2024-02-15 00:27:40', 0, 'EU'),
-(3, 'test2', '$2y$10$j4zu3gQ6znAaJ85MtnIc.OPNa7fHnEUSy4dQz4ts8mHGpVf5muQJq', 'test2@gmail.com', NULL, '2024-02-15 01:26:06', 0, 'Russia');
-
 -- --------------------------------------------------------
 
 --
@@ -412,7 +403,7 @@ ALTER TABLE `replies`
 -- AUTO_INCREMENT for table `userprofile`
 --
 ALTER TABLE `userprofile`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
