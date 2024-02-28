@@ -1,5 +1,5 @@
 <?php
-
+require_once '../dbh.inc.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

@@ -27,7 +27,8 @@
                     $user = isset($_COOKIE['username_cookie']) ? $_COOKIE['username_cookie'] : null;
 
                     if ($user){
-                        echo '<a href="Logout/logout.inc.php" class="Logout">Logout</a>';
+                        echo '<a href="Logout/logout.inc.php" class="Logout">Logout</a> <br>';
+                        
                     } else {
                         echo '<a href="Login/loginhtml.php">Login</a>';
                     }
@@ -38,6 +39,17 @@
         <section class="Text">
             <span>welcome</span>
             <h1>Find Your Party, Seamlessly</h1>
+            <?php
+                    $userr = isset($_COOKIE['username_cookie']) ? $_COOKIE['username_cookie'] : null;
+
+                    if ($userr){
+                        echo '<a href="./MainPage/Mainhtml.php" class="FindTeam">Find Teamates Now!</a> <br>';
+                        
+                    } else {
+                        echo 'Log In to try now!';
+                    }
+                ?>
+
         </section>
     </header>
 </body>

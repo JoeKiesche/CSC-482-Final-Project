@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum Posts</title>
-    <!-- Bootstrap CSS -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fetch_players.css">
 </head>
 <body>
     <div class="container mt-5">
         <a href="./mainhtml.php">
             <button type="submit" class="btn btn-secondary">Back</button>
         </a>
+
+
+
+        
 </div>
     <div class="container mt-5">
-        <h2>Forum Posts</h2>
+        <h1>Find Teamates now!</h1>
 
         <!-- Accordion to display forum posts -->
         <div class="accordion" id="accordionExample">
@@ -73,15 +78,25 @@
                     echo '<div id="collapse' . $row["post_id"] . '" class="collapse" aria-labelledby="heading' . $row["post_id"] . '" data-parent="#accordionExample">';
                     echo '<div class="card-body">';
                     echo '<p>' . $row["content"] . '</p>';
-                    echo '<p>Game: ' . $row["game"] . '</p>' . '<p>Posted on: ' . $row["post_date"] . '</p>';
+                    $timeString = $row["post_date"];
+                    $dateTime = new DateTime($timeString);
+                    $formattedTime = $dateTime->format('M d, Y h:i A');
 
+                    echo '<div style="text-align: left;">';
+                    echo '<p2>Game: ' . $row["game"] . '</p>' . '<p3>Posted on: ' . $formattedTime . '</p3>';
+                    echo '</div>';
 
                     
                     // Join button form
                     echo '<form action="join_group.php" method="post">';
                     echo '<input type="hidden" name="post_id" value="' . $row["post_id"] . '">';
-                    echo '<p>Players needed: ' . $row["playercount"] . '</p>';
+                    echo '<div style="text-align: right;">'; 
+                    echo '<p3>Players needed: ' . $row["playercount"] . '</p3>';
+                    echo '</div>';
+
+                    echo '<div style="text-align: right;">'; 
                     echo '<button type="submit" class="btn btn-primary">Join Now!</button>';
+                    echo '</div>';
                     
                     echo '</form>';
                     
