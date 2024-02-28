@@ -1,4 +1,29 @@
-html body {
-    background-color: #00182f;
+body{
+    width: 100%;
+    height: 100vh;
+    background:linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.2)) , url(../Pictures/DreamHack_wide.jpg);
+    background-size: cover;
+}   
 
+.welcome{
+position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 650px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+.Logo{
+    position: absolute;
+    left: 20px;
+    top: 20px; 
+    width: 10px;
+    height: 10px;
+}
+
+.profile{
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }

@@ -2,6 +2,16 @@
 // Include the database connection file
 require_once '../dbh.inc.php';
 
+        //checking if cookeie is working properly
+        if (isset($_COOKIE['username_cookie'])) {
+            $usernameee = $_COOKIE['username_cookie'];
+        } else {
+            echo "Cookie not set or unavailable.";
+        }
+
+
+
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the form data
