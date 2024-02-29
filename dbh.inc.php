@@ -10,5 +10,5 @@
         if ($conn->connect_error) {
             die("onnection failed: " . $conn->connect_error ."<br>");
         } 
-        echo "<i>DB Connected successfully...</i>";
+        //echo "<i>DB Connected successfully...</i>";
 ?>
