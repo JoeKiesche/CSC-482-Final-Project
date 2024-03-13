@@ -16,6 +16,36 @@
             </a>
         </div>
 
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#findFriendsModal">
+        Find Friends
+        </button>
+
+        <!-- Find Friends Modal -->
+        <div class="modal fade" id="findFriendsModal" tabindex="-1" role="dialog" aria-labelledby="findFriendsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="findFriendsModalLabel">Find Friends</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="findFriendsForm" method="POST" action="../FriendsList/friend_list.php">
+                <div class="form-group">
+                    <label for="usernameInput">Enter Username:</label>
+                    <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Username" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Request</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
         <div class="profile">
             <a href="">
                 <button type="button" class="btn btn-primary mt-3 btn-lg">Profile</button>
@@ -130,5 +160,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../FriendsList/friends.js"></script>
 </body>
 </html>

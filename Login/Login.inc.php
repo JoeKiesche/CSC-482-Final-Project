@@ -56,9 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     
-    $_SESSION["user_id"] = $result["userid"];
+    $_SESSION["user_id"] = $result["user_id"];
     $_SESSION["user_username"] = htmlspecialchars($result["username"]);
-
 
     /*
 
