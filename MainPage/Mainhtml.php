@@ -22,6 +22,12 @@
             </a>
         </div>
 
+        <div class="groups">
+            <a href="../Groups/groupshtml.php">
+                <button type="button" class="btn btn-primary mt-3 btn-lg">Groups</button>
+            </a>
+        </div>
+
 
 
     <div class="welcome">
