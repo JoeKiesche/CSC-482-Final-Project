@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +20,11 @@
 
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#findFriendsModal">
-        Find Friends
-        </button>
+        <div class="d-flex justify-content-end">
+            <button id="openForm" type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#findFriendsModal">
+                Find Friends
+            </button>
+        </div>
 
         <!-- Find Friends Modal -->
         <div class="modal fade" id="findFriendsModal" tabindex="-1" role="dialog" aria-labelledby="findFriendsModalLabel" aria-hidden="true">
@@ -29,17 +33,24 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="findFriendsModalLabel">Find Friends</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true" class="close-btn">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="findFriendsForm" method="POST" action="../FriendsList/friend_list.php">
+                <form id="findFriendsForm" method="POST">
                 <div class="form-group">
                     <label for="usernameInput">Enter Username:</label>
                     <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Username" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Request</button>
                 </form>
+                <div class="friend-requests mt-4">
+                    <h6>Friend Requests</h6>
+                    <ul id="friendRequestsList" class="list-group">
+
+                    </ul>
+                </div>
+
             </div>
             </div>
         </div>

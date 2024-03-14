@@ -4,7 +4,7 @@
     var btn = document.getElementById("openForm");
 
     // Get the popup form element
-    var popup = document.getElementById("popupForm");
+    var popup = document.getElementById("findFriendsModal");
 
     // Get the element that closes the popup
     var closeBtn = document.getElementsByClassName("close-btn")[0];
@@ -28,23 +28,26 @@
 })();
 
 
+
 $(document).ready(function() {
     $('#findFriendsForm').on('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
         
         var formData = $(this).serialize(); // Serialize form data
-
+        console.log(formData);
         $.ajax({
             type: 'POST',
             url: 'http://localhost/CSC-482-Final-Project/FriendsList/friend_list.php', // Adjust the path to your PHP script
             data: formData,
             dataType: 'json', // Expect JSON response from the server
             success: function(response) {
-                if (response.success) {
-                    alert(response.message); // Or update the UI in a more sophisticated way
-                    // Optional: Close modal or clear form
+                if (response.success && response.users) {
+                    var userNames = response.users.map(function(user) {return user.username;}).join(", ");
+                    alert("Users found: " + userNames);
+                } else if (response.success && response.message) {
+                    alert(response.message);
                 } else {
-                    alert(response.message); // Or show the error in the modal directly
+                    alert(response.message || "An error as occurred");
                 }
             },
             error: function() {
@@ -53,3 +56,87 @@ $(document).ready(function() {
         });
     });
 });
+
+
+$(document).ready(function() {
+    $('#openForm').on('click', function() {
+        // Call fetch friend requests when the Find Friends button is clicked
+        fetchFriendRequests();
+    });
+});
+
+function fetchFriendRequests() {
+    fetch('../FriendsList/display_request.php') // Adjust the path to your PHP script
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                const requestsList = document.getElementById('friendRequestsList');
+                requestsList.innerHTML = ''; // Clear existing list
+                data.requests.forEach(request => {
+                    requestsList.innerHTML += `
+                        <li class="list-group-item">
+                            ${request.username} - Requested on: ${new Date(request.request_date).toLocaleDateString()}
+                            <button class="btn btn-success btn-sm" onclick="acceptRequest(${request.user_id})">Accept</button>
+                            <button class="btn btn-danger btn-sm" onclick="rejectRequest(${request.user_id})">Reject</button>
+                        </li>`;
+                });
+            } else {
+                // No requests or an error occurred
+                document.getElementById('friendRequestsList').innerHTML = '<li class="list-group-item">No incoming requests.</li>';
+            }
+        })
+        .catch(error => {
+            console.error('There was an error fetching the friend requests:', error);
+        });
+}
+
+
+function acceptRequest(friendUserId) {
+    fetch('../FriendsList/request_accept.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `user_id=${friendUserId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        if (data.success) {
+            // Optionally, refresh the friend requests list
+            fetchFriendRequests();
+        }
+    })
+    .catch(error => {
+        console.error('There was an error accepting the friend request:', error);
+    });
+}
+
+function rejectRequest(friendUserId) {
+    fetch('../FriendsList/request_reject.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `user_id=${friendUserId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        if (data.success) {
+            // Optionally, refresh the friend requests list
+            fetchFriendRequests();
+        }
+    })
+    .catch(error => {
+        console.error('There was an error rejecting the friend request:', error);
+    });
+}
+
+
+

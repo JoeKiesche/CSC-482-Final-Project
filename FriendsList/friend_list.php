@@ -7,35 +7,34 @@ require_once '../dbh.inc.php';
 header('Content-Type: application/json'); // Declare the content type as JSON
 
 
-error_log(print_r($_SESSION, true));
+error_log("POST from friend_list.php" . print_r($_POST, true));
 // Assuming a database connection is already established and user session is started
 
 if (isset($_POST['username'])) { // Assuming you're using 'username' directly for AJAX call
     $searchUsername = $conn->real_escape_string($_POST['username']);
-    $currentUserId = $_SESSION['user_id']; // Get the current logged-in user's ID from the session
+    $currentUserId = $_SESSION['user_id'];
 
-    // Search for users based on the username but exclude the current user
-    $searchQuery = "SELECT * FROM userprofile WHERE username LIKE ? AND user_id != ?";
+    // Search for the user with an exact match instead of LIKE
+    $searchQuery = "SELECT * FROM userprofile WHERE username = ? AND user_id != ?";
     $stmt = $conn->prepare($searchQuery);
-    $likeUsername = "%$searchUsername%";
-    $stmt->bind_param("si", $likeUsername, $currentUserId);
+    $stmt->bind_param("si", $searchUsername, $currentUserId);
     $stmt->execute();
     $searchResult = $stmt->get_result();
 
     if ($searchResult->num_rows > 0) {
-        // Assuming you want to send back user details or a success message
-        $users = $searchResult->fetch_all(MYSQLI_ASSOC); // Fetch all results as an associative array
-        echo json_encode(['success' => true, 'users' => $users]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'No users found.']);
-    }
-    exit; // Stop script execution after handling this request
-}
+        $user = $searchResult->fetch_assoc(); // Fetch the user data
+        $friendUserId = $user['user_id']; // Hold the user ID in a variable
 
-// Assuming 'add_friend' action is called directly via AJAX now
-if (isset($_POST['add_friend'])) {
+    } else {
+        // No user found with the exact username
+        echo json_encode(['success' => false, 'message' => 'No user found with that username.']);
+        exit; // Stop script execution after sending the response
+    }
+    
+    error_log("Search completed. Found: " . $searchResult->num_rows . " users.");
+    
+    error_log("Entered query entering");
     $currentUserId = $_SESSION['user_id'];
-    $friendUserId = $_POST['user_id']; // Adjust according to how you're passing the friend's user ID
 
     // Check if there's already a friend request or friendship
     $checkQuery = "SELECT * FROM friendslist WHERE 
@@ -50,6 +49,7 @@ if (isset($_POST['add_friend'])) {
         // No existing request or friendship, proceed to insert the friend request
         $insertQuery = "INSERT INTO friendslist (user1_id, user2_id, status, request_user_id) VALUES (?, ?, 'pending', ?)";
         $stmt = $conn->prepare($insertQuery);
+        error_log($stmt->error);
         $stmt->bind_param("iii", $currentUserId, $friendUserId, $currentUserId);
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => 'Friend request sent!']);
