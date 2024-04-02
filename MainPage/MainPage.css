@@ -22,8 +22,14 @@ position: absolute;
     height: 10px;
 }
 
+.groups{
+    position: absolute;
+    right: 125px;
+    top: 20px;
+}
+
 .profile{
     position: absolute;
     right: 20px;
     top: 20px;
-} 
+}

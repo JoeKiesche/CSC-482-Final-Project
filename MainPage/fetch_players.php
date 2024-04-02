@@ -69,9 +69,9 @@
             $sql = "SELECT forumpost.*, userprofile.username 
             FROM forumpost
             JOIN userprofile ON forumpost.user_id = userprofile.user_id
-            WHERE game = ?";
+            WHERE game = ? AND forumpost.user_id != (SELECT user_id FROM userprofile WHERE username = ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $game);
+            $stmt->bind_param("ss", $game, $usernameee);
             $stmt->execute();
             $result = $stmt->get_result();
 

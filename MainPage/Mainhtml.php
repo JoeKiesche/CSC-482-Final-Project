@@ -1,5 +1,3 @@
-<?php session_start() ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,45 +15,6 @@
                 <img src="../pictures/controllerRed.png" height="100"/>
             </a>
         </div>
-
-
-        <!-- Button trigger modal -->
-        <div class="d-flex justify-content-end">
-            <button id="openForm" type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#findFriendsModal">
-                Find Friends
-            </button>
-        </div>
-
-        <!-- Find Friends Modal -->
-        <div class="modal fade" id="findFriendsModal" tabindex="-1" role="dialog" aria-labelledby="findFriendsModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="findFriendsModalLabel">Find Friends</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="close-btn">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="findFriendsForm" method="POST">
-                <div class="form-group">
-                    <label for="usernameInput">Enter Username:</label>
-                    <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Username" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Request</button>
-                </form>
-                <div class="friend-requests mt-4">
-                    <h6>Friend Requests</h6>
-                    <ul id="friendRequestsList" class="list-group">
-
-                    </ul>
-                </div>
-
-            </div>
-            </div>
-        </div>
-        </div>
-
 
         <div class="profile">
             <a href="">
@@ -171,6 +130,5 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../FriendsList/friends.js"></script>
 </body>
 </html>

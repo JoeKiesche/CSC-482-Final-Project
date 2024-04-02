@@ -1,7 +1,7 @@
 
 
 <?php
-session_start();
+
 require_once '../dbh.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -55,9 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die();
     }
 
-    $_SESSION["user_id"] = $result[0]["user_id"];
-    $_SESSION["user_username"] = htmlspecialchars($result[0]["username"]);
-    error_log("Session varible from Login.inc.php" . print_r($_SESSION,true));
+    
+    $_SESSION["user_id"] = $result["userid"];
+    $_SESSION["user_username"] = htmlspecialchars($result["username"]);
 
 
     /*
