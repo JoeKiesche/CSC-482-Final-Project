@@ -18,7 +18,7 @@
             <div class="menu">
                 <a href="./indexhtml.php">Home</a>
                 <a href="./FAQ/FAQ.html">FAQ</a>
-                <a href="About us">About us</a>
+                <a href="./AboutUs/about.html ">About us</a>
                 <a href="Contact">Contact</a>
             </div>
 
