@@ -35,6 +35,16 @@ nav{
     height: 10px;
 }
 
+.menu {
+    position: absolute;
+    left: 400px; /* Adjust the left offset as needed */
+    top: 45px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% - 400px); /* Adjust the width to leave space for the logo and admin button */
+}
+
 .menu a {
     text-decoration: none;
     color: #fff;
@@ -65,7 +75,7 @@ nav{
 .userLogin a{
     position: absolute;
     right: 20px;
-    top: 20px; 
+    top: 45px; 
     text-decoration: none;
     color: #fff;
     padding: 10px 20px;
@@ -76,7 +86,7 @@ nav{
 .Logout {
     position: absolute;
     right: 20px;
-    top: 20px; 
+    top: 45px; 
     text-decoration: none;
     color: #fff;
     padding: 10px 20px;
@@ -84,6 +94,19 @@ nav{
     background: grey;
 }
 
+
+.Admin {
+    position: absolute;
+    right: 150px; 
+    top: 45px; 
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    background: grey;
+}
 
 .FindTeam{
     text-decoration: none;
