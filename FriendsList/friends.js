@@ -108,7 +108,7 @@ function acceptRequest(friendUserId) {
     .then(data => {
         alert(data.message);
         if (data.success) {
-            // Optionally, refresh the friend requests list
+            
             fetchFriendRequests();
         }
     })
@@ -129,7 +129,7 @@ function rejectRequest(friendUserId) {
     .then(data => {
         alert(data.message);
         if (data.success) {
-            // Optionally, refresh the friend requests list
+            
             fetchFriendRequests();
         }
     })
@@ -138,5 +138,36 @@ function rejectRequest(friendUserId) {
     });
 }
 
+$(document).ready(function() {
+    $('#openForm').on('click', function() {
+        fetchFriendRequests();
+        fetchFriends();
+    });
+});
 
-
+function fetchFriends() {
+    console.log("fetchFriends is called");
+    fetch('../FriendsList/fetch_friends.php') 
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                const friendsList = document.getElementById('currentFriendsList');
+                friendsList.innerHTML = ''; // Clear existing list
+                data.friends.forEach(friend => {
+                    console.log(friend);
+                    friendsList.innerHTML += `<li class="list-group-item">${friend.friend_username}</li>`;
+                });
+            } else {
+                document.getElementById('currentFriendsList').innerHTML = '<li class="list-group-item">No friends found.</li>';
+            }
+        })
+        .catch(error => {
+            console.error('There was an error fetching the friends:', error);
+        });
+}

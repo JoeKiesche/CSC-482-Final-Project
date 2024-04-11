@@ -51,6 +51,13 @@
                     </ul>
                 </div>
 
+                <div class="current-friends mt-4">
+                    <h6>Current Friends</h6>
+                    <ul id="currentFriendsList" class="list-group">
+
+                    </ul>
+                </div>
+
             </div>
             </div>
         </div>
