@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2024 at 12:48 AM
+-- Generation Time: Apr 03, 2024 at 09:41 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -93,6 +93,13 @@ CREATE TABLE `forumpost` (
   `playercount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `forumpost`
+--
+
+INSERT INTO `forumpost` (`post_id`, `user_id`, `title`, `content`, `game`, `post_date`, `playercount`) VALUES
+(25, 10, 'John', 'JohnJohnJohnJohn', 'Apex', '2024-04-03 18:58:46', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +127,24 @@ CREATE TABLE `groups` (
   `createdate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`group_id`, `group_name`, `createdate`) VALUES
+(13, 'Casual Apex', '2024-03-12 23:11:43'),
+(14, 'Ranked', '2024-03-12 23:12:40'),
+(15, 'Ranked duo', '2024-03-12 23:13:45'),
+(16, 'Test', '2024-03-13 19:55:34'),
+(17, 'Test', '2024-04-03 18:48:44'),
+(18, 'test', '2024-04-03 18:56:49'),
+(19, 'test', '2024-04-03 18:56:59'),
+(20, 'test', '2024-04-03 18:57:17'),
+(21, 'John', '2024-04-03 18:58:46'),
+(22, 'JohnJohnJohnJohn', '2024-04-03 18:58:53'),
+(23, 'JohnJohn', '2024-04-03 18:59:02'),
+(24, 'deletee', '2024-04-03 19:30:39');
+
 -- --------------------------------------------------------
 
 --
@@ -131,6 +156,25 @@ CREATE TABLE `group_members` (
   `group_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `group_members`
+--
+
+INSERT INTO `group_members` (`member_id`, `group_id`, `user_id`) VALUES
+(36, 13, 10),
+(37, 14, 11),
+(40, 16, 10),
+(41, 14, 10),
+(42, 15, 10),
+(43, 16, 10),
+(44, 16, 10),
+(45, 16, 10),
+(46, 16, 11),
+(47, 21, 10),
+(48, 22, 10),
+(49, 23, 10),
+(50, 24, 10);
 
 -- --------------------------------------------------------
 
@@ -146,6 +190,14 @@ CREATE TABLE `group_messages` (
   `message_text` text NOT NULL,
   `sent_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `group_messages`
+--
+
+INSERT INTO `group_messages` (`message_id`, `group_id`, `sender_id`, `parent_message_id`, `message_text`, `sent_at`) VALUES
+(17, 14, 11, NULL, 'Hi', '2024-03-12 23:16:35'),
+(19, 14, 10, NULL, 'Hi', '2024-03-13 19:56:06');
 
 -- --------------------------------------------------------
 
@@ -217,6 +269,15 @@ CREATE TABLE `userprofile` (
   `is_admin` tinyint(1) DEFAULT 0,
   `region` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `userprofile`
+--
+
+INSERT INTO `userprofile` (`user_id`, `username`, `password`, `email`, `full_name`, `created_at`, `is_admin`, `region`) VALUES
+(10, 'John', '$2y$10$ce.NOBz68ou7AstEGQL55.BO6VEV.ZnerimNPbnZULkts7wbuDDz2', 'John@gmail.com', NULL, '2024-03-12 23:10:06', 0, 'NA'),
+(11, 'Devin', '$2y$10$rWU7WE8eDBkdxTmjmmqfF.FHeDAVrZslNYav6T.wjA.lVq./fLOT.', 'Devin@gmail.com', NULL, '2024-03-12 23:10:20', 0, 'NA'),
+(14, 'Admin', '$2y$10$TBZ/cPLHTiIvOD1rTFWWy.vfsItlIK4sDlGO8veBN8h7OL7GTI0Z6', 'Admin@gmail.com', NULL, '2024-04-03 16:52:50', 1, 'NA');
 
 -- --------------------------------------------------------
 
@@ -292,17 +353,17 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `group_members`
   ADD PRIMARY KEY (`member_id`),
-  ADD KEY `group_id` (`group_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `group_members_ibfk_2` (`user_id`),
+  ADD KEY `group_members_ibfk_1` (`group_id`);
 
 --
 -- Indexes for table `group_messages`
 --
 ALTER TABLE `group_messages`
   ADD PRIMARY KEY (`message_id`),
-  ADD KEY `group_id` (`group_id`),
-  ADD KEY `sender_id` (`sender_id`),
-  ADD KEY `parent_message_id` (`parent_message_id`);
+  ADD KEY `group_messages_ibfk_2` (`sender_id`),
+  ADD KEY `group_messages_ibfk_1` (`group_id`),
+  ADD KEY `group_messages_ibfk_3` (`parent_message_id`);
 
 --
 -- Indexes for table `privatemessages`
@@ -355,7 +416,7 @@ ALTER TABLE `valprofile`
 -- AUTO_INCREMENT for table `forumpost`
 --
 ALTER TABLE `forumpost`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `friendslist`
@@ -367,19 +428,19 @@ ALTER TABLE `friendslist`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `group_members`
 --
 ALTER TABLE `group_members`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `group_messages`
 --
 ALTER TABLE `group_messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `privatemessages`
@@ -403,7 +464,7 @@ ALTER TABLE `replies`
 -- AUTO_INCREMENT for table `userprofile`
 --
 ALTER TABLE `userprofile`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -438,7 +499,7 @@ ALTER TABLE `forumcomments`
 -- Constraints for table `forumpost`
 --
 ALTER TABLE `forumpost`
-  ADD CONSTRAINT `forumpost_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`),
+  ADD CONSTRAINT `forumpost_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE;
 
 --
@@ -453,16 +514,16 @@ ALTER TABLE `friendslist`
 -- Constraints for table `group_members`
 --
 ALTER TABLE `group_members`
-  ADD CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`),
-  ADD CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`);
+  ADD CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `group_messages`
 --
 ALTER TABLE `group_messages`
-  ADD CONSTRAINT `group_messages_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`),
-  ADD CONSTRAINT `group_messages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `userprofile` (`user_id`),
-  ADD CONSTRAINT `group_messages_ibfk_3` FOREIGN KEY (`parent_message_id`) REFERENCES `group_messages` (`message_id`);
+  ADD CONSTRAINT `group_messages_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `group_messages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `group_messages_ibfk_3` FOREIGN KEY (`parent_message_id`) REFERENCES `group_messages` (`message_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `privatemessages`

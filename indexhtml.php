@@ -1,3 +1,11 @@
+<?php
+require_once 'Login/login_helperfunction.inc.php';
+require_once 'dbh.inc.php';
+$user = isset($_COOKIE['username_cookie']) ? $_COOKIE['username_cookie'] : null;
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,14 +26,24 @@
             <div class="menu">
                 <a href="./indexhtml.php">Home</a>
                 <a href="./FAQ/FAQ.html">FAQ</a>
-                <a href="./AboutUs/about.html ">About us</a>
+                <a href="About us">About us</a>
                 <a href="Contact">Contact</a>
             </div>
-
+            
+            <div class="adminbutton">
+                <?php
+                if ($user){
+                        $is_admin = get_is_admin($conn, $user);
+                        //checks to see if the user is admin and adds new button if so
+                        if ($is_admin === 1) {
+                            echo '<a href="admin/adminhtml.php" class="Admin">Admin</a>';
+                        }
+                    }
+                ?>
+            </div>
+            
             <div class="userLogin">
                 <?php
-                    $user = isset($_COOKIE['username_cookie']) ? $_COOKIE['username_cookie'] : null;
-
                     if ($user){
                         echo '<a href="Logout/logout.inc.php" class="Logout">Logout</a> <br>';
                         
