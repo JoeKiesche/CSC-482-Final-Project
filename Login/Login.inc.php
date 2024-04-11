@@ -1,7 +1,7 @@
 
 
 <?php
-session_start();
+
 require_once '../dbh.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -48,16 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    //admin account to remove certain feattures MIGHT CHANGE LATER**
-    if ($result && $result[0]['username'] === 'admin'){
+    //admin account to remove certain features MIGHT CHANGE LATER** new
+    $is_admin = get_is_admin($conn, $username);
+    if ($is_admin === 1){
         setcookie('username_cookie', $profileUser, time() + (86400 * 30), '/');
-        header("Location: ../admin/adminhtml.php");
+        header("Location: ../indexhtml.php?login=success");
         die();
     }
 
-    $_SESSION["user_id"] = $result[0]["user_id"];
-    $_SESSION["user_username"] = htmlspecialchars($result[0]["username"]);
-    error_log("Session varible from Login.inc.php" . print_r($_SESSION,true));
+    
+    $_SESSION["user_id"] = $result["userid"];
+    $_SESSION["user_username"] = htmlspecialchars($result["username"]);
 
 
     /*

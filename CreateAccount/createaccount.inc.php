@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once '../dbh.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

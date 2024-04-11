@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2024 at 12:48 AM
+-- Generation Time: Apr 11, 2024 at 04:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -270,7 +270,7 @@ ALTER TABLE `forumcomments`
 --
 ALTER TABLE `forumpost`
   ADD PRIMARY KEY (`post_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `forumpost_ibfk_1` (`user_id`);
 
 --
 -- Indexes for table `friendslist`
@@ -292,17 +292,17 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `group_members`
   ADD PRIMARY KEY (`member_id`),
-  ADD KEY `group_id` (`group_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `group_members_ibfk_2` (`user_id`),
+  ADD KEY `group_members_ibfk_1` (`group_id`);
 
 --
 -- Indexes for table `group_messages`
 --
 ALTER TABLE `group_messages`
   ADD PRIMARY KEY (`message_id`),
-  ADD KEY `group_id` (`group_id`),
-  ADD KEY `sender_id` (`sender_id`),
-  ADD KEY `parent_message_id` (`parent_message_id`);
+  ADD KEY `group_messages_ibfk_2` (`sender_id`),
+  ADD KEY `group_messages_ibfk_1` (`group_id`),
+  ADD KEY `group_messages_ibfk_3` (`parent_message_id`);
 
 --
 -- Indexes for table `privatemessages`
@@ -438,7 +438,7 @@ ALTER TABLE `forumcomments`
 -- Constraints for table `forumpost`
 --
 ALTER TABLE `forumpost`
-  ADD CONSTRAINT `forumpost_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`),
+  ADD CONSTRAINT `forumpost_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE;
 
 --
@@ -453,16 +453,16 @@ ALTER TABLE `friendslist`
 -- Constraints for table `group_members`
 --
 ALTER TABLE `group_members`
-  ADD CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`),
-  ADD CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`);
+  ADD CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `group_messages`
 --
 ALTER TABLE `group_messages`
-  ADD CONSTRAINT `group_messages_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`),
-  ADD CONSTRAINT `group_messages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `userprofile` (`user_id`),
-  ADD CONSTRAINT `group_messages_ibfk_3` FOREIGN KEY (`parent_message_id`) REFERENCES `group_messages` (`message_id`);
+  ADD CONSTRAINT `group_messages_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `group_messages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `userprofile` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `group_messages_ibfk_3` FOREIGN KEY (`parent_message_id`) REFERENCES `group_messages` (`message_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `privatemessages`
