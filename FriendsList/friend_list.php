@@ -4,13 +4,13 @@ session_start();
 
 require_once '../dbh.inc.php';
 
-header('Content-Type: application/json'); // Declare the content type as JSON
+header('Content-Type: application/json'); 
 
 
 error_log("POST from friend_list.php" . print_r($_POST, true));
-// Assuming a database connection is already established and user session is started
 
-if (isset($_POST['username'])) { // Assuming you're using 'username' directly for AJAX call
+
+if (isset($_POST['username'])) { 
     $searchUsername = $conn->real_escape_string($_POST['username']);
     $currentUserId = $_SESSION['user_id'];
 
@@ -22,13 +22,13 @@ if (isset($_POST['username'])) { // Assuming you're using 'username' directly fo
     $searchResult = $stmt->get_result();
 
     if ($searchResult->num_rows > 0) {
-        $user = $searchResult->fetch_assoc(); // Fetch the user data
-        $friendUserId = $user['user_id']; // Hold the user ID in a variable
+        $user = $searchResult->fetch_assoc(); 
+        $friendUserId = $user['user_id']; 
 
     } else {
-        // No user found with the exact username
+        
         echo json_encode(['success' => false, 'message' => 'No user found with that username.']);
-        exit; // Stop script execution after sending the response
+        exit; 
     }
     
     error_log("Search completed. Found: " . $searchResult->num_rows . " users.");
@@ -59,5 +59,5 @@ if (isset($_POST['username'])) { // Assuming you're using 'username' directly fo
     } else {
         echo json_encode(['success' => false, 'message' => 'There is already a friend request or friendship.']);
     }
-    exit; // Stop script execution after handling this request
+    exit; 
 }

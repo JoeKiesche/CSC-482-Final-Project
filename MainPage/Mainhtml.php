@@ -16,13 +16,14 @@
             </a>
         </div>
 
-
         <!-- Button trigger modal -->
-        <div class="d-flex justify-content-end">
+        <div class="friends">
             <button id="openForm" type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#findFriendsModal">
                 Find Friends
             </button>
         </div>
+        
+
 
         <!-- Find Friends Modal -->
         <div class="modal fade" id="findFriendsModal" tabindex="-1" role="dialog" aria-labelledby="findFriendsModalLabel" aria-hidden="true">
@@ -63,16 +64,19 @@
 
 
         <div class="profile">
-            <a href="">
+            <a href="../profile/profile.php">
                 <button type="button" class="btn btn-primary mt-3 btn-lg">Profile</button>
             </a>
         </div>
+
 
         <div class="groups">
             <a href="../Groups/groupshtml.php">
                 <button type="button" class="btn btn-primary mt-3 btn-lg">Groups</button>
             </a>
         </div>
+        
+        
 
 
 

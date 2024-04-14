@@ -72,8 +72,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     */
    
     setcookie('username_cookie', $profileUser, time() + (86400 * 30), '/');
-          
 
+    $sql = "SELECT user_id FROM userprofile WHERE username = '$profileUser'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // User found, set cookie
+        $row = $result->fetch_assoc();
+        $user_id = $row["user_id"];
+        
+        // Set cookie with user ID
+        setcookie("user_id", $user_id, time() + (86400 * 30), "/");
+          
+    }
 
     //might need to change (john changed it)
     header("Location: ../indexhtml.php?login=success");
