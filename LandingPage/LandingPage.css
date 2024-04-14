@@ -72,6 +72,7 @@ nav{
 }
 
 
+
 .userLogin a{
     position: absolute;
     right: 20px;
@@ -81,7 +82,10 @@ nav{
     padding: 10px 20px;
     font-size: 20px;
     background: grey;
+    margin-right: 10px;
 }
+
+
 
 .Logout {
     position: absolute;
@@ -113,5 +117,23 @@ nav{
     color: #fff;
     padding: 10px 20px;
     font-size: 20px;
+    background: grey;
+}
+
+.Info{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    max-width: 900px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.Info{
+    text-decoration: none;
+    color: #fff;
+    padding: 1px 30px;
+    font-size: 18px;
     background: grey;
 }

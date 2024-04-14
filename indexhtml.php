@@ -47,8 +47,19 @@ $user = isset($_COOKIE['username_cookie']) ? $_COOKIE['username_cookie'] : null;
                     if ($user){
                         echo '<a href="Logout/logout.inc.php" class="Logout">Logout</a> <br>';
                         
+                        
                     } else {
                         echo '<a href="Login/loginhtml.php">Login</a>';
+                    }
+                ?>
+            </div>
+
+
+            <div class="Info">
+                <?php
+                    if ($user){
+                        echo '<div><a href="playerInfo/playerInfohtml.php" class="Info">Change game info</a></div> <br>';
+                        
                     }
                 ?>
             </div>
