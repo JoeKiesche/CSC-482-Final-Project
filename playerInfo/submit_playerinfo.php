@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->query($sql_apex);
 
     // Redirect user to a success page
-    header("Location: ../LandingPage.html");
+    header("Location: ../indexhtml.php");
     exit(); // Stop further execution
 }
 
