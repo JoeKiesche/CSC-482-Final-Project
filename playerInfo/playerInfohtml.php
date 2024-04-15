@@ -11,7 +11,7 @@
     <!-- 
         Rainbow info SECTION
      -->
-        <form action="../indexhtml.php" method="post">
+        <form action="submit_playerinfo.php" method="post">
         <section id="Rainbow"> 
             <h2>Rainbow Six Siege</h2>         
             <input type="text" name="username1" placeholder="Username">
