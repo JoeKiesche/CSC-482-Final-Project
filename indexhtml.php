@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'Login/login_helperfunction.inc.php';
 require_once 'dbh.inc.php';
 $user = isset($_COOKIE['username_cookie']) ? $_COOKIE['username_cookie'] : null;

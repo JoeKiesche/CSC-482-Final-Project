@@ -7,7 +7,7 @@ require_once '../dbh.inc.php';
 header('Content-Type: application/json'); 
 
 
-error_log("POST from friend_list.php" . print_r($_POST, true));
+error_log("SESSION VARIABLE ::::: " . var_export($_SESSION, true));
 
 
 if (isset($_POST['username'])) { 
