@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['post_id'])) {
     $rowGroup = $resultGroup->fetch_assoc();
     $groupId = $rowGroup['group_id'];
 
-    // Query to delete the forum post
+    // Query to delete the forum post ??
     $sqlDeletePost = "DELETE FROM forumpost WHERE post_id = ?";
     $stmtDeletePost = $conn->prepare($sqlDeletePost);
     $stmtDeletePost->bind_param("i", $postId);
@@ -35,15 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['post_id'])) {
     // Execute the queries
     $success = $stmtDeletePost->execute() && $stmtDeleteGroup->execute();
     if ($success) {
-        // Redirect to the forum page after successful deletion
+        // Redirect to the forum page after deleting porperly
         header("Location: forumlisthtml.php");
         exit();
     } else {
-        // Handle deletion failure (e.g., display an error message)
+        // Handle deletion failure error message
         echo "Failed to delete post.";
     }
 } else {
-    // Handle invalid request (e.g., display an error message)
+    // Handle invalid request (error message)
     echo "Invalid request.";
 }
 ?>

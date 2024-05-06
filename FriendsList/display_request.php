@@ -1,10 +1,11 @@
 <?php
 session_start();
-require_once '../dbh.inc.php'; // Include your database connection
+require_once '../dbh.inc.php'; 
 
 header('Content-Type: application/json');
 
-$currentUserId = $_SESSION['user_id']; // Get the current user's ID from session
+// get user id from the session
+$currentUserId = $_SESSION['user_id']; 
 
 // Prepare SQL to fetch pending friend requests
 $sql = "SELECT u.username, u.user_id, f.request_date 

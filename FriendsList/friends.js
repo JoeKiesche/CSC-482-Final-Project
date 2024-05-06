@@ -31,13 +31,13 @@
 
 $(document).ready(function() {
     $('#findFriendsForm').on('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault(); 
         
-        var formData = $(this).serialize(); // Serialize form data
+        var formData = $(this).serialize();  
         console.log(formData);
         $.ajax({
             type: 'POST',
-            url: 'http://localhost/CSC-482-Final-Project/FriendsList/friend_list.php', // Adjust the path to your PHP script
+            url: 'http://localhost/CSC-482-Final-Project/FriendsList/friend_list.php', 
             data: formData,
             dataType: 'json', // Expect JSON response from the server
             success: function(response) {
@@ -76,7 +76,7 @@ function fetchFriendRequests() {
         .then(data => {
             if (data.success) {
                 const requestsList = document.getElementById('friendRequestsList');
-                requestsList.innerHTML = ''; // Clear existing list
+                requestsList.innerHTML = ''; 
                 data.requests.forEach(request => {
                     requestsList.innerHTML += `
                         <li class="list-group-item">

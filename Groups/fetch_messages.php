@@ -1,5 +1,5 @@
 <?php
-require_once '../dbh.inc.php'; // Include your database connection file
+require_once '../dbh.inc.php'; 
 
 // Fetch messages for the group along with the sender's username
 $sql_messages = "SELECT m.*, u.username
