@@ -1,5 +1,5 @@
 <?php
-// Include the database connection file
+
 require_once '../dbh.inc.php';
 
 // Check if the group_id is set in the URL
@@ -19,7 +19,7 @@ if (isset($_GET['group_id'])) {
 
         // Display the chatroom with the group name
         echo "<h1>Messageroom for $group_name</h1>";
-        // Add chatroom UI here
+        // Add chatroom UI here ?????
     } else {
         echo "Group not found.";
     }

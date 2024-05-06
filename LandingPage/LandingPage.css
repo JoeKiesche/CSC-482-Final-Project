@@ -37,12 +37,12 @@ nav{
 
 .menu {
     position: absolute;
-    left: 400px; /* Adjust the left offset as needed */
+    left: 400px; 
     top: 45px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: calc(100% - 400px); /* Adjust the width to leave space for the logo and admin button */
+    width: calc(100% - 400px); 
 }
 
 .menu a {

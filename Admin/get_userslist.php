@@ -2,7 +2,8 @@
 require_once '../dbh.inc.php';
 
 // Get the admin's username
-$adminUsername = 'admin'; // Update this with the actual admin's username
+// can change if want to chnage admin user!!!!
+$adminUsername = 'admin'; 
 
 // Query to fetch usernames of all users except the admin
 $sql = "SELECT username FROM userprofile WHERE username != ?";

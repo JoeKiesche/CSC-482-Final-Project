@@ -1,10 +1,5 @@
 <?php
-// Include database connection code here
-// For example:
-// $servername = "localhost";
-// $username = "username";
-// $password = "password";
-// $dbname = "lfgwebsite";
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

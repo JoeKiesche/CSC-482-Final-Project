@@ -7,7 +7,7 @@ if (isset($_COOKIE['user_id'])) {
 } else {
     echo "Cookie not set or unavailable.";
     // Handle the case where the user is not logged in
-    exit(); // Stop further execution
+    exit(); 
 }
 
 // Process form data and insert or update the appropriate table
@@ -91,7 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Redirect user to a success page
     header("Location: ../indexhtml.php");
-    exit(); // Stop further execution
+    exit(); 
+
+    // might have to update - should be wokring though
 }
 
 $conn->close();

@@ -46,7 +46,7 @@ if (isset($_POST['username'])) {
     $checkResult = $stmt->get_result();
 
     if ($checkResult->num_rows == 0) {
-        // No existing request or friendship, proceed to insert the friend request
+        // No existing request or friendship...... proceed to send the friend request
         $insertQuery = "INSERT INTO friendslist (user1_id, user2_id, status, request_user_id) VALUES (?, ?, 'pending', ?)";
         $stmt = $conn->prepare($insertQuery);
         error_log($stmt->error);
